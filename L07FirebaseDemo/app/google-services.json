@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "545811618591",
+    "firebase_url": "https://socialappdemo-35aca.firebaseio.com",
+    "project_id": "socialappdemo-35aca",
+    "storage_bucket": "socialappdemo-35aca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545811618591:android:84e78c854a280a35",
+        "android_client_info": {
+          "package_name": "edu.cpp.cs499.l07_firebase_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545811618591-utvd0ilj2at68vbbdgdcl13a7hdtfagj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAxvhQCOiRzJmRVb1FeKx9QU0GSyeZZOA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

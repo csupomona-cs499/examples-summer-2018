@@ -7,21 +7,32 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:gravity="left"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:background="@drawable/chat_background_shape_left"
+        android:layout_gravity="left"
         android:id="@+id/chatMessageTextView"
         android:text="Chat Message"
         android:textSize="14sp"
-        android:textColor="#2b2c2d"
-        android:layout_width="match_parent"
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:gravity="left"
+        android:adjustViewBounds="true"
+        android:id="@+id/chatMessageImageView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:gravity="left"
         android:id="@+id/timeTextView"
         android:text="2018/07/09 12:13:03"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:textColor="#8bace5"
+        android:textSize="11sp"
+        android:textColor="#c0cdd3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

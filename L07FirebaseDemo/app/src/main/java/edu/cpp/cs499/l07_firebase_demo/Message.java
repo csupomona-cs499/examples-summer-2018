@@ -2,6 +2,9 @@ package edu.cpp.cs499.l07_firebase_demo;
 
 public class Message {
 
+    public static final int TEXT = 1;
+    public static final int IMAGE = 2;
+
     private long time;
     private String senderId;
     private String message;

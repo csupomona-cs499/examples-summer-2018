@@ -40,9 +40,19 @@ public class ChatArrayAdapter extends ArrayAdapter<Message> {
             view = layoutInflater.inflate(R.layout.listview_item_chat_left, parent, false);
         }
 
+        if (messageList.get(position).getType() == Message.IMAGE) {
+            TextView chatTextView = view.findViewById(R.id.chatMessageTextView);
+            chatTextView.setText("");
+            chatTextView.setVisibility(View.GONE);
+            ImageView chatImageView = view.findViewById(R.id.chatMessageImageView);
+            Picasso.get().load(messageList.get(position).getMessage())
+                    .resize(200, 200)
+                    .into(chatImageView);
+        } else {
+            TextView chatTextView = view.findViewById(R.id.chatMessageTextView);
+            chatTextView.setText(messageList.get(position).getMessage());
+        }
 
-        TextView chatTextView = view.findViewById(R.id.chatMessageTextView);
-        chatTextView.setText(messageList.get(position).getMessage());
 
         TextView timeTextView = view.findViewById(R.id.timeTextView);
         timeTextView.setText(new Date(messageList.get(position).getTime()).toLocaleString());

@@ -1,9 +1,13 @@
 package edu.cpp.cs499.l07_firebase_demo;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -15,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -35,13 +40,58 @@ public class MainActivity extends AppCompatActivity {
     private FriendArrayAdapter friendArrayAdapter;
     private List<Friend> friendList;
 
+    private MediaPlayer mediaPlayer;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+//        new AsyncTask<Void, Void, Void>() {
+//            @Override
+//            protected Void doInBackground(Void... voids) {
+//                AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+//                        AppDatabase.class, "database-name").build();
+//                List<Friend> friends = db.friendDao().getAll();
+//                Log.i("TEST", "Local friend list: " + friends);
+//                return null;
+//            }
+//        }.execute();
+
         loadFriendList();
+        loadMusicUrl();
+    }
+
+    private void loadMusicUrl() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("music");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                MusicRecord musicRecord = dataSnapshot.getValue(MusicRecord.class);
+                if (mediaPlayer != null) {
+                    mediaPlayer.stop();
+                }
+
+                mediaPlayer = new MediaPlayer();
+                try {
+                    mediaPlayer.setDataSource(musicRecord.getUrl());
+                    mediaPlayer.prepare();
+                    mediaPlayer.seekTo(musicRecord.getTime() * 1000);
+                    mediaPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @OnClick(R.id.addButton)
